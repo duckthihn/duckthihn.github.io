@@ -2,11 +2,9 @@
 import { useState } from "react";
 import { Fade } from "react-reveal";
 import { useSfx } from "utils/use-sfx";
-import Button from "../Button/Button";
 import FooterBg from "./FooterBg/FooterBg";
 import Profiles from "../Profiles/Profiles";
 import { theme } from "tailwind.config";
-import { MENULINKS } from "../../constants";
 
 const Footer = () => {
   const [playbackRate, setPlaybackRate] = useState(0.75);
@@ -35,15 +33,7 @@ const Footer = () => {
             <div className="text-center">
               <Profiles />
             </div>
-            <div className="pt-4 text-center">
-              <Button
-                href={`#${MENULINKS.find((el) => el.ref === "contact").ref}`}
-                classes="link"
-                type="secondary"
-              >
-                Let&apos;s Talk
-              </Button>
-            </div>
+
             <p className="text-center text-white text-sm sm:text-base font-medium tracking-wide mt-8">
               Developed with{" "}
               <button onClick={handleClick} className="link cursor-none">

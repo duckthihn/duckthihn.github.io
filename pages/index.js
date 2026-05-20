@@ -13,7 +13,6 @@ import About2 from "@/components/About/About2";
 import Projects from "@/components/Projects/Projects";
 import Work from "@/components/Work/Work";
 import Collaboration from "@/components/Collaboration/Collaboration";
-import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import { displayFancyLogs } from "utils/log";
 
@@ -69,7 +68,6 @@ export default function Home() {
             <Projects isDesktop={isDesktop} clientHeight={clientHeight} />
             <Work />
             <Collaboration clientHeight={clientHeight} />
-            <Contact />
           </main>
           <Footer />
         </>

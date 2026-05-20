@@ -45,7 +45,7 @@ const Work = () => {
       ref={sectionRef}
       id={MENULINKS.find((el) => el.ref === "work").ref}
       aria-label="Work Experience"
-      className="w-full relative select-none xs:mt-40 sm:mt-72 mb-24 md:mb-32"
+      className="w-full relative select-none xs:mt-10 sm:mt-12 mb-24 md:mb-32"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

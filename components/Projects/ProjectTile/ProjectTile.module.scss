@@ -1,40 +1,249 @@
 .projectTile {
-  height: 22rem;
-  width: 38rem;
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: linear-gradient(
+    145deg,
+    rgba(50, 49, 51, 0.6),
+    rgba(36, 34, 37, 0.8)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease;
 
-  @media (min-width: 768px) {
-    height: 26rem;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1.25rem;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      transparent 50%,
+      rgba(255, 255, 255, 0.03)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
 
-  img {
-    object-fit: cover;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5),
+      0 0 30px -5px var(--glow-color, rgba(112, 0, 255, 0.1));
+
+    &::before {
+      opacity: 1;
+    }
+
+    .imageContainer {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .projectArrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .techStack {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accentLine {
+      width: 3rem;
+    }
+  }
+}
+
+// Image showcase area — white/light bg for diagrams
+.imageContainer {
+  position: relative;
+  margin: 1rem 1rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(248, 249, 250, 0.95), rgba(240, 241, 245, 0.95));
+  border: 1px solid rgba(112, 0, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(112, 0, 255, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: rgba(112, 0, 255, 0.4);
+    box-shadow: 0 12px 24px rgba(112, 0, 255, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .projectImage {
+      transform: scale(1.03);
+    }
+  }
+
+  @media (min-width: 768px) {
+    margin: 1.25rem 1.25rem 0;
+  }
+}
+
+.imageAspect {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  padding-top: 0;
+
+  @media (min-width: 768px) {
+    height: 240px;
   }
 }
 
 .projectImage {
-  @apply absolute top-0 rounded-xl shadow-xl;
-
-  width: 17rem !important;
-  max-width: 17rem !important;
-  transform: rotate(-22.5deg);
-  height: unset !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  max-width: unset !important;
   min-width: unset !important;
   max-height: unset !important;
-  object-fit: contain !important;
   left: unset !important;
-  right: 2rem !important;
+  right: unset !important;
+  top: unset !important;
   bottom: unset !important;
-  clip-path: inset(0);
-  z-index: 0;
+  clip-path: none;
+  padding: 0.75rem;
+  transition: transform 0.3s ease;
+  z-index: 2;
 
-  @media (max-width: 480px) {
-    width: clamp(12rem, 40vw, 16rem) !important;
-    right: clamp(-2rem, 2vw, 1.5rem) !important;
+  @media (min-width: 768px) {
+    padding: 1rem;
   }
 }
 
-.techIcons {
-  transform: rotate(-22.5deg) translateZ(3rem);
+// Content area below the image
+.projectContent {
+  position: relative;
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  @media (min-width: 768px) {
+    padding: 1.25rem 1.5rem 1.75rem;
+  }
+}
+
+.projectHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.projectName {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.accentLine {
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.projectDescription {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  opacity: 0.7;
+  transform: translateY(4px);
+  transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
+}
+
+.techBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.375rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: capitalize;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.projectArrow {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+
+  svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    svg {
+      color: #fff;
+    }
+  }
 }

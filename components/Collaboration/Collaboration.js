@@ -72,7 +72,7 @@ const Collaboration = ({ clientHeight }) => {
         <p className="opacity-40 text-6xl sm:text-7xl font-semibold whitespace-nowrap ui-left transform-gpu">
           {Array(5)
             .fill(
-              " Data Engineering Problem Solving Data Architecture "
+              "Data Modeling - Spark - Airflow - Iceberg - dbt - Snowflake - Databricks - "
             )
             .reduce((str, el) => str.concat(el), "")}{" "}
         </p>

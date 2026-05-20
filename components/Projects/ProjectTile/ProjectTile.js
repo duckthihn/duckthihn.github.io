@@ -5,24 +5,18 @@ import styles from "./ProjectTile.module.scss";
 import { PROJECT_IMAGES } from "../images";
 
 const tiltOptions = {
-  max: 5,
+  max: 3,
   speed: 400,
   glare: true,
-  "max-glare": 0.2,
+  "max-glare": 0.08,
   gyroscope: false,
 };
 
-const ProjectTile = ({ project, classes, isDesktop }) => {
+const ProjectTile = ({ project }) => {
   const projectCard = useRef(null);
 
   const { name, imageKey, description, gradient, url, tech } = project;
-
   const image = PROJECT_IMAGES[imageKey];
-
-  let additionalClasses = "";
-  if (classes) {
-    additionalClasses = classes;
-  }
 
   useEffect(() => {
     const node = projectCard.current;
@@ -30,78 +24,79 @@ const ProjectTile = ({ project, classes, isDesktop }) => {
     return () => node?.vanillaTilt?.destroy();
   }, []);
 
+  const Wrapper = url ? "a" : "div";
+  const wrapperProps = url
+    ? { href: url, target: "_blank", rel: "noreferrer" }
+    : {};
+
   return (
-    <a
-      href={url || undefined}
-      className={`overflow-hidden rounded-3xl snap-start link ${additionalClasses}`}
-      target="_blank"
-      rel="noreferrer"
+    <Wrapper
+      {...wrapperProps}
+      ref={projectCard}
+      className={`${styles.projectTile} link`}
       style={{
-        maxWidth: isDesktop ? "calc(100vw - 2rem)" : "calc(100vw - 4rem)",
-        flex: "1 0 auto",
-        WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+        "--glow-color": `${gradient[0]}44`,
       }}
     >
-      <div
-        ref={projectCard}
-        className={`${styles.projectTile} rounded-3xl relative p-6 flex flex-col justify-between max-w-full`}
-        style={{
-          background: `linear-gradient(90deg, ${gradient[0]} 0%, ${gradient[1]} 100%)`,
-        }}
-      >
-        <Image
-          src="/project-bg.svg"
-          alt=""
-          className="absolute w-full h-full top-0 left-0 opacity-20 rounded-3xl"
-          fill
-        />
-        <Image
-          src={image}
-          alt={name}
-          placeholder="blur"
-          fill
-          className={styles.projectImage}
-        />
-        {!isDesktop && (
-          <div
-            className="absolute bottom-0 left-0 w-full h-20"
-            style={{
-              background: `linear-gradient(0deg, ${gradient[0]} 10%, rgba(0,0,0,0) 100%)`,
-            }}
+      {/* Image showcase */}
+      <div className={styles.imageContainer}>
+        <div className={styles.imageAspect}>
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className={styles.projectImage}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-        )}
-        <h3
-          className="font-medium text-2xl sm:text-3xl z-10 pl-2 pt-2 transform-gpu"
-          style={{ transform: "translateZ(3rem)" }}
-        >
-          {name}
-        </h3>
-        <div
-          className={`
-            ${styles.techIcons} w-1/2 h-full absolute left-24 top-0 sm:flex items-center hidden
-          `}
-        >
-          <div className="flex flex-col pb-8">
-            {tech.map((el, i) => (
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className={styles.projectContent}>
+        <div className={styles.projectHeader}>
+          <div>
+            <h3 className={styles.projectName}>{name}</h3>
+            <div
+              className={styles.accentLine}
+              style={{
+                background: `linear-gradient(90deg, ${gradient[0]}, ${gradient[1]})`,
+              }}
+            />
+          </div>
+          {url && (
+            <div className={styles.projectArrow}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
+        <p className={styles.projectDescription}>{description}</p>
+        <div className={styles.techStack}>
+          {tech.map((el) => (
+            <span className={styles.techBadge} key={el}>
               <Image
-                className={`${i % 2 === 0 && "ml-16"} mb-4`}
                 src={`/projects/tech/${el}.svg`}
                 alt={el}
-                height={45}
-                width={45}
-                key={el}
+                height={12}
+                width={12}
               />
-            ))}
-          </div>
+              {el.replace(/-/g, " ")}
+            </span>
+          ))}
         </div>
-        <p
-          className="text-lg z-10 tracking-wide font-medium text-white transform-gpu"
-          style={{ transform: "translateZ(0.8rem)" }}
-        >
-          {description}
-        </p>
       </div>
-    </a>
+    </Wrapper>
   );
 };
 

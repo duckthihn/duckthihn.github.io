@@ -23,6 +23,7 @@ const TimelineDot = () => (
 
 const ImageCard = ({ image, imageAlt, company, role, className }) => {
   const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const tiltRef = useRef(null);
 
   useEffect(() => {
@@ -36,21 +37,28 @@ const ImageCard = ({ image, imageAlt, company, role, className }) => {
     <div
       ref={tiltRef}
       className={cn(
-        "relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gray-dark-4 [transform-style:preserve-3d]",
+        "group relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-gray-dark-2 to-gray-dark-4 border border-purple/20 transition-all duration-300 hover:border-purple/40 hover:shadow-lg hover:shadow-purple/20 [transform-style:preserve-3d]",
+        "before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-purple/5 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 before:z-10 group-hover:before:opacity-100",
         className
       )}
     >
       {!hasError ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image}
-          alt={imageAlt}
-          className="h-full w-full object-cover"
-          loading="lazy"
-          onError={() => setHasError(true)}
-        />
+        <>
+          {isLoading && (
+            <div className="absolute inset-0 animate-pulse bg-gray-dark-3 rounded-2xl" />
+          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt={imageAlt}
+            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105 relative z-20"
+            loading="lazy"
+            onLoad={() => setIsLoading(false)}
+            onError={() => setHasError(true)}
+          />
+        </>
       ) : (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-gray-dark-3 to-gray-dark-5 p-6 text-center">
+        <div className="relative z-20 flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-gray-dark-3 to-gray-dark-5 p-6 text-center">
           <span className="text-2xl font-semibold text-white">{company}</span>
           <span className="text-sm text-gray-light-3">{role}</span>
         </div>
