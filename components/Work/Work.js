@@ -1,38 +1,12 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import Tabs from "./Tabs/Tabs";
-import StickyScroll from "./StickyScroll/StickyScroll";
-import { MENULINKS, WORK_CONTENTS } from "../../constants";
+import Certifications from "./Certifications/Certifications";
+import WorkTimeline from "./WorkTimeline/WorkTimeline";
+import { CERTIFICATIONS, MENULINKS, WORK_EXPERIENCES } from "../../constants";
 
-const Work = ({ isDesktop }) => {
+const Work = () => {
   const sectionRef = useRef(null);
-
-  const tabItems = useMemo(
-    () => [
-      {
-        title: "Grapevine",
-        value: "grapevine",
-        content: (
-          <StickyScroll
-            isDesktop={isDesktop}
-            contentItems={WORK_CONTENTS.GRAPEVINE}
-          />
-        ),
-      },
-      {
-        title: "Dukaan",
-        value: "dukaan",
-        content: (
-          <StickyScroll
-            isDesktop={isDesktop}
-            contentItems={WORK_CONTENTS.DUKAAN}
-          />
-        ),
-      },
-    ],
-    [isDesktop]
-  );
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,6 +16,16 @@ const Work = ({ isDesktop }) => {
           sectionRef.current.querySelectorAll(".staggered-reveal"),
           { opacity: 0, duration: 0.5, stagger: 0.5 },
           "<"
+        )
+        .from(
+          sectionRef.current.querySelectorAll(".timeline-entry"),
+          { opacity: 0, y: 40, duration: 0.6, stagger: 0.2 },
+          "-=0.2"
+        )
+        .from(
+          sectionRef.current.querySelectorAll(".certification-card"),
+          { opacity: 0, y: 30, duration: 0.5, stagger: 0.15 },
+          "-=0.1"
         );
 
       ScrollTrigger.create({
@@ -59,9 +43,9 @@ const Work = ({ isDesktop }) => {
   return (
     <section
       ref={sectionRef}
-      id={MENULINKS[3].ref}
+      id={MENULINKS.find((el) => el.ref === "work").ref}
       aria-label="Work Experience"
-      className="w-full relative select-none xs:mt-40 sm:mt-72 mb-96"
+      className="w-full relative select-none xs:mt-40 sm:mt-72 mb-24 md:mb-32"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -85,7 +69,10 @@ const Work = ({ isDesktop }) => {
               A quick recap of where I&apos;ve worked.{" "}
             </p>
           </div>
-          <Tabs tabItems={tabItems} />
+          <div className="staggered-reveal">
+            <WorkTimeline experiences={WORK_EXPERIENCES} />
+          </div>
+          <Certifications certifications={CERTIFICATIONS} />
         </div>
       </div>
     </section>

@@ -37,7 +37,7 @@ const Footer = () => {
             </div>
             <div className="pt-4 text-center">
               <Button
-                href={`#${MENULINKS[4].ref}`}
+                href={`#${MENULINKS.find((el) => el.ref === "contact").ref}`}
                 classes="link"
                 type="secondary"
               >

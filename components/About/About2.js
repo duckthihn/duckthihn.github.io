@@ -54,7 +54,7 @@ const About2 = ({ clientHeight }) => {
           >
             strong
           </span>{" "}
-          obsession for attention to detail.
+          obsession for attention to data quality and accuracy.
         </h2>
       </div>
     </section>

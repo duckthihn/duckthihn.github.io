@@ -17,6 +17,10 @@ const Button = ({ href, onClick, children, classes, type, ...otherProps }) => {
             ? !otherProps.disable
               ? styles.primary__button
               : styles.primary__disabledButton
+            : type === "secondary-indigo"
+            ? !otherProps.disable
+              ? styles.secondary_indigo__button
+              : styles.secondary_indigo__button // fallback to normal if disabled is not defined separately
             : !otherProps.disable
             ? styles.secondary__button
             : styles.secondary__disabledButton

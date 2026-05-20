@@ -5,6 +5,25 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { MENULINKS, SKILLS } from "../../constants";
 
+const SkillGroup = ({ title, skills }) => (
+  <div className="mt-10">
+    <h3 className="uppercase tracking-widest text-gray-light-2 font-medium text-base mb-4 staggered-reveal">
+      {title}
+    </h3>
+    <div className="flex flex-wrap gap-6 transform-gpu staggered-reveal">
+      {skills.map((skill) => (
+        <Image
+          key={skill}
+          src={`/skills/${skill}.svg`}
+          alt={skill}
+          width={50}
+          height={50}
+        />
+      ))}
+    </div>
+  </div>
+);
+
 const Skills = () => {
   const sectionRef = useRef(null);
 
@@ -33,7 +52,7 @@ const Skills = () => {
   return (
     <section
       ref={sectionRef}
-      id={MENULINKS[1].ref}
+      id={MENULINKS.find((el) => el.ref === "skills").ref}
       aria-label="Skills"
       className="w-full relative select-none mt-44"
     >
@@ -55,46 +74,19 @@ const Skills = () => {
               My Skills
             </h2>
             <p className="text-[1.65rem] font-medium md:max-w-lg w-full mt-2 staggered-reveal">
-              I like to take responsibility to craft aesthetic user experience
-              using modern frontend architecture.{" "}
+              I like to take responsibility to craft data insights
+              using modern data architecture.{" "}
             </p>
           </div>
-          <div className="mt-10">
-            <h3 className="uppercase tracking-widest text-gray-light-2 font-medium text-base mb-4 staggered-reveal">
-              LANGUAGES AND TOOLS
-            </h3>
-            <div className="flex items-center flex-wrap gap-6 staggered-reveal">
-              {SKILLS.languagesAndTools.map((skill) => (
-                <Image
-                  key={skill}
-                  src={`/skills/${skill}.svg`}
-                  alt={skill}
-                  width={50}
-                  height={50}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="mt-10">
-            <h3 className="uppercase tracking-widest text-gray-light-2 font-medium text-base mb-4 staggered-reveal">
-              LIBRARIES AND FRAMEWORKS
-            </h3>
-            <div className="flex flex-wrap gap-6 transform-gpu staggered-reveal">
-              {SKILLS.librariesAndFrameworks.map((skill) => (
-                <Image
-                  key={skill}
-                  src={`/skills/${skill}.svg`}
-                  alt={skill}
-                  width={50}
-                  height={50}
-                />
-              ))}
-            </div>
-          </div>
+
+          <SkillGroup title="LANGUAGES AND TOOLS" skills={SKILLS.languagesAndTools} />
+          <SkillGroup title="BIG DATA TECHNOLOGIES" skills={SKILLS.bigDataTechnologies} />
+          <SkillGroup title="DATA VISUALIZATIONS" skills={SKILLS.dataVisualizations} />
+
           <div className="flex flex-wrap mt-10">
             <div className="mr-16 xs:mr-20 mb-6 staggered-reveal">
               <h3 className="uppercase tracking-widest text-gray-light-2 font-medium text-base mb-4">
-                DATABASES
+                DATABASES & STORAGE
               </h3>
               <div className="flex flex-wrap gap-6 transform-gpu">
                 {SKILLS.databases.map((skill) => (

@@ -64,7 +64,7 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      id={MENULINKS[0].ref}
+      id={MENULINKS.find((el) => el.ref === "home").ref}
       aria-label="Introduction"
       className="w-full flex md:items-center py-8 2xl:container mx-auto xl:px-20 md:px-12 px-4 min-h-screen relative mb-24"
       style={{ opacity: 0 }}
@@ -84,9 +84,9 @@ const Hero = () => {
         </h5>
         <h1 className={`${styles.heroName} text-white text-6xl font-semibold`}>
           <span className={`relative ${styles.emphasize} staggered-reveal`}>
-            Shubh
+            Thinh
           </span>
-          <span className="staggered-reveal"> Porwal</span>
+          <span className="staggered-reveal"> Pham</span>
         </h1>
         <p>
           <span
@@ -97,9 +97,12 @@ const Hero = () => {
         <div className="staggered-reveal">
           <Profiles />
         </div>
-        <div className="staggered-reveal pt-4">
-          <Button href={`#${MENULINKS[4].ref}`} classes="link" type="primary">
+        <div className="staggered-reveal pt-4 flex flex-wrap gap-4">
+          <Button href={`#${MENULINKS.find((el) => el.ref === "contact").ref}`} classes="link" type="primary">
             Let&apos;s Talk
+          </Button>
+          <Button href="/resume.pdf" target="_blank" rel="noreferrer" download={true} classes="link" type="secondary-indigo">
+            Download Resume
           </Button>
         </div>
       </div>

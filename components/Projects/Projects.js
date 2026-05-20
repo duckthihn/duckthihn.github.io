@@ -82,7 +82,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
   return (
     <section
       ref={sectionRef}
-      id={MENULINKS[2].ref}
+      id={MENULINKS.find((el) => el.ref === "projects").ref}
       aria-label="Projects"
       className={`${
         isDesktop && "min-h-screen"
@@ -100,8 +100,7 @@ const Projects = ({ isDesktop, clientHeight }) => {
             My Projects
           </h2>
           <p className="text-[1.65rem] font-medium md:max-w-lg max-w-sm mt-2 staggered-reveal">
-            Some things I&apos;ve built with love, expertise and a pinch of
-            magical ingredients.{" "}
+            What I do at 2AM on Saturdays.{" "}
           </p>
         </div>
         <div

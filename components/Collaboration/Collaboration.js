@@ -57,16 +57,22 @@ const Collaboration = ({ clientHeight }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} aria-label="Collaboration" className="w-full relative select-none my-40">
+    <section
+      ref={sectionRef}
+      aria-label="Collaboration"
+      className="w-full relative select-none mt-8 mb-32 md:mt-12 md:mb-40"
+    >
       <div
         className={`${
-          clientHeight > 650 ? "py-36" : "py-48"
+          clientHeight > 650
+            ? "pt-12 pb-28 md:pt-16 md:pb-32"
+            : "pt-16 pb-32 md:pb-40"
         } section-container flex flex-col`}
       >
         <p className="opacity-40 text-6xl sm:text-7xl font-semibold whitespace-nowrap ui-left transform-gpu">
           {Array(5)
             .fill(
-              " Software Engineering Problem Solving Software Architecture "
+              " Data Engineering Problem Solving Data Architecture "
             )
             .reduce((str, el) => str.concat(el), "")}{" "}
         </p>
@@ -86,7 +92,7 @@ const Collaboration = ({ clientHeight }) => {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Collaboration
+            Data Engineering
           </span>
           ?
         </h2>
@@ -94,7 +100,7 @@ const Collaboration = ({ clientHeight }) => {
         <p className="mt-6 md:mt-8 opacity-40 text-6xl sm:text-7xl font-semibold whitespace-nowrap ui-right transform-gpu">
           {Array(5)
             .fill(
-              " Agile Development Frontend Development React Native Development "
+              " Data Engineering Data Architecture "
             )
             .reduce((str, el) => str.concat(el), "")}{" "}
         </p>
