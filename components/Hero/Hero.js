@@ -98,7 +98,7 @@ const Hero = () => {
           <Profiles />
         </div>
         <div className="staggered-reveal pt-4 flex flex-wrap gap-4">
-          <Button href="/resume.pdf" target="_blank" rel="noreferrer" download={true} classes="link" type="secondary-indigo">
+          <Button href="/DE_DucThinh_CV.pdf" target="_blank" rel="noreferrer" download={true} classes="link" type="secondary-indigo">
             Download Resume
           </Button>
         </div>

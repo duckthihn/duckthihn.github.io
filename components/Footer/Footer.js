@@ -33,14 +33,6 @@ const Footer = () => {
             <div className="text-center">
               <Profiles />
             </div>
-
-            <p className="text-center text-white text-sm sm:text-base font-medium tracking-wide mt-8">
-              Developed with{" "}
-              <button onClick={handleClick} className="link cursor-none">
-                <span className="block animate-bounce">❤️</span>
-              </button>{" "}
-              by <span className="text-white">Shubh Porwal</span>
-            </p>
           </div>
         </div>
       </Fade>

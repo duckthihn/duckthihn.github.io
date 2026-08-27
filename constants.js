@@ -125,15 +125,26 @@ export const PROJECTS = [
 
 export const WORK_EXPERIENCES = [
   {
+    date: "06/2026 – 09/2026",
+    role: "Data Engineer Intern",
+    company: "NAB Innovation Centre Vietnam",
+    description:
+      "Databricks • Banking • Financial Data",
+    location: "Ho Chi Minh City",
+    image: "/work/nab.png",
+    imageAlt: "NAB Innovation Centre Vietnam",
+  },
+  {
     date: "09/2025 – 03/2026",
-    role: "Intern -> Fresher Data Engineer",
+    role: "Data Engineer Intern",
     company: "Vietnam Silicon",
     description:
-      "3 months internship at Vietnam Silicon, where I had the opportunity to work on real-world data engineering projects and gain hands-on experience in building data pipelines and working with big data technologies.",
-    location: "HCM, Vietnam",
-    image: "/work/vietnam-silicon.png",
-    imageAlt: "Vietnam Silicon — connect and collaborate",
+      "Agriculture • Hospitality Data Insights",
+    location: "Ho Chi Minh City",
+    image: "/work/vns.png",
+    imageAlt: "Vietnam Silicon — with us, you can",
   },
+
 ];
 
 export const CERTIFICATIONS = [

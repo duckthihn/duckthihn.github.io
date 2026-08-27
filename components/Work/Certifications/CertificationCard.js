@@ -8,11 +8,11 @@ const certificationTiltOptions = {
   glare: true,
   "max-glare": 0.15,
   gyroscope: false,
-  scale: 1.03,
+  scale: 1.02,
 };
 
 const CertificationCard = ({ certification }) => {
-  const { name, image, imageAlt } = certification;
+  const { name, issuer, image, imageAlt } = certification;
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const tiltRef = useRef(null);
@@ -28,35 +28,49 @@ const CertificationCard = ({ certification }) => {
     <article
       ref={tiltRef}
       className={cn(
-        "certification-card group relative flex min-h-[14rem] items-center justify-center rounded-2xl border border-purple/20 bg-gradient-to-br from-gray-dark-2 to-gray-dark-3 p-6 transition-all duration-300 hover:border-purple/40 hover:shadow-lg hover:shadow-purple/20 sm:min-h-[16rem] sm:p-8 [transform-style:preserve-3d]",
-        "before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-purple/5 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100"
+        "certification-card group relative flex flex-col justify-between rounded-2xl border border-purple/20 bg-[#0f1623] p-4 transition-all duration-300 hover:border-purple/50 hover:shadow-xl hover:shadow-purple/20 [transform-style:preserve-3d]"
       )}
     >
-      {!hasError ? (
-        <>
-          {isLoading && (
-            <div className="absolute inset-0 animate-pulse bg-gray-dark-4 rounded-2xl" />
-          )}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image}
-            alt={imageAlt}
-            className="max-h-44 w-full object-contain sm:max-h-52 transition-transform duration-300 group-hover:scale-105 relative z-10"
-            loading="lazy"
-            onLoad={() => setIsLoading(false)}
-            onError={() => setHasError(true)}
-          />
-        </>
-      ) : (
-        <div className="flex flex-col items-center justify-center gap-3 text-center">
-          <span className="text-lg font-semibold text-white sm:text-xl">
-            {name}
-          </span>
-          <span className="text-sm text-gray-light-3">
-            Add image to public/certifications/
-          </span>
-        </div>
-      )}
+      <div className="relative flex h-48 sm:h-52 w-full items-center justify-center overflow-hidden rounded-xl bg-white p-5 shadow-sm">
+        {!hasError ? (
+          <>
+            {isLoading && (
+              <div className="absolute inset-0 animate-pulse bg-gray-light-1 rounded-xl" />
+            )}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              alt={imageAlt || name}
+              className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+              onLoad={() => setIsLoading(false)}
+              onError={() => setHasError(true)}
+            />
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-1 text-center p-2">
+            <span className="text-base font-bold text-gray-dark-1">
+              {name}
+            </span>
+            <span className="text-xs text-gray-light-4">
+              Add image to public/certifications/
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-4 flex flex-col px-1 pb-1">
+        <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight text-left">
+          {name}
+        </h3>
+        {issuer && (
+          <div className="mt-2.5 flex items-center">
+            <span className="inline-flex items-center rounded-full bg-[#20183b] border border-purple/30 px-3.5 py-1 text-xs font-semibold text-[#c084fc] shadow-sm">
+              {issuer}
+            </span>
+          </div>
+        )}
+      </div>
     </article>
   );
 };

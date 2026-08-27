@@ -1,7 +1,7 @@
 const LocationPin = () => (
   <svg
-    width="14"
-    height="14"
+    width="16"
+    height="16"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ const LocationPin = () => (
 
 const LocationPill = ({ location }) => {
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-gray-dark-1 bg-gray-dark-4 px-3 py-1.5 text-sm text-gray-light-2">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-purple/30 bg-gray-dark-4 px-3.5 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base font-medium text-gray-light-1 shadow-sm transition-all duration-300 hover:border-purple/60">
       <LocationPin />
       {location}
     </span>
@@ -25,3 +25,4 @@ const LocationPill = ({ location }) => {
 };
 
 export default LocationPill;
+
