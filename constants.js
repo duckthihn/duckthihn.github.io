@@ -27,6 +27,10 @@ export const MENULINKS = [
     ref: "home",
   },
   {
+    name: "SQL Terminal",
+    ref: "sql",
+  },
+  {
     name: "Skills",
     ref: "skills",
   },
@@ -81,6 +85,7 @@ export const SKILLS = {
     "linux",
   ],
   bigDataTechnologies: [
+    "databricks",
     "apache-spark",
     "apache-airflow",
     "dagster",
@@ -92,6 +97,44 @@ export const SKILLS = {
   dataVisualizations: ["streamlit", "tableau", "powerbi"],
   other: ["git", "cursor", "claude"],
 };
+
+export const SKILL_NAMES = {
+  python: "Python",
+  sql: "SQL",
+  docker: "Docker",
+  linux: "Linux",
+  databricks: "Databricks",
+  "apache-spark": "Apache Spark",
+  "apache-airflow": "Apache Airflow",
+  airflow: "Apache Airflow",
+  dagster: "Dagster",
+  kafka: "Kafka",
+  hadoop: "Hadoop",
+  dbt: "dbt",
+  mysql: "MySQL",
+  mongodb: "MongoDB",
+  postgresql: "PostgreSQL",
+  "minio-light": "MinIO",
+  "aws-light": "AWS",
+  "amazon-s3": "Amazon S3",
+  "github-light": "GitHub",
+  streamlit: "Streamlit",
+  tableau: "Tableau",
+  powerbi: "Power BI",
+  git: "Git",
+  cursor: "Cursor",
+  claude: "Claude",
+};
+
+export const getSkillName = (skillKey) => {
+  if (SKILL_NAMES[skillKey]) return SKILL_NAMES[skillKey];
+  return skillKey
+    .replace(/-light$/, "")
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 
 export const PROJECTS = [
   {

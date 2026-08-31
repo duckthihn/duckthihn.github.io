@@ -9,6 +9,7 @@ import Cursor from "@/components/Cursor/Cursor";
 import Hero from "@/components/Hero/Hero";
 import About1 from "@/components/About/About1";
 import Skills from "@/components/Skills/Skills";
+import SqlTerminal from "@/components/SqlTerminal/SqlTerminal";
 import About2 from "@/components/About/About2";
 import Projects from "@/components/Projects/Projects";
 import Work from "@/components/Work/Work";
@@ -35,7 +36,7 @@ export default function Home() {
     history.scrollRestoration = "manual";
     setIsDesktop(
       typeof orientation === "undefined" &&
-        navigator.userAgent.indexOf("IEMobile") === -1
+      navigator.userAgent.indexOf("IEMobile") === -1
     );
     setClientHeight(innerHeight);
 
@@ -58,11 +59,12 @@ export default function Home() {
               role="img"
               className="text-gray-light-1 opacity-10 sm:text-9xl xs:text-8xl inline-block -z-10 absolute rotate-90 right-0 md:top-52 xs:top-96"
             >
-              DEV
+              DATA
             </div>
             <div className="fixed top-0 left-0 h-screen w-screen -z-1" />
             <Hero />
             <About1 clientHeight={clientHeight} />
+            <SqlTerminal />
             <Skills />
             <About2 clientHeight={clientHeight} />
             <Projects isDesktop={isDesktop} clientHeight={clientHeight} />

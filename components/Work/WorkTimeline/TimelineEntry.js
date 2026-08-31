@@ -37,7 +37,7 @@ const ImageCard = ({ image, imageAlt, company, role, className }) => {
     <div
       ref={tiltRef}
       className={cn(
-        "group relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-gray-dark-2 to-gray-dark-4 border border-purple/20 transition-all duration-300 hover:border-purple/40 hover:shadow-lg hover:shadow-purple/20 [transform-style:preserve-3d]",
+        "group relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-gray-dark-2 to-gray-dark-4 border border-purple/20 transition-all duration-300 hover:border-purple/40 hover:shadow-lg hover:shadow-purple/20 [transform-style:preserve-3d]",
         "before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-purple/5 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 before:z-10 group-hover:before:opacity-100",
         className
       )}
@@ -51,7 +51,7 @@ const ImageCard = ({ image, imageAlt, company, role, className }) => {
           <img
             src={image}
             alt={imageAlt}
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105 relative z-20"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 relative z-20"
             loading="lazy"
             onLoad={() => setIsLoading(false)}
             onError={() => setHasError(true)}
